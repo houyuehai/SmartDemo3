@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+   >
+   <data class = "Mainbinding">
+      <variable
+          name="homestate"
+          type="com.example.inf.smarthome3.viewmodel.HomeState"/>
+   </data>
+
+<LinearLayout
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
+    tools:context="com.example.inf.smarthome3.view.MainActivity">
+
+   <Switch
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:checked="@={homestate.roomLight}"
+       android:text="灯"
+       />
+
+   <Switch
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:checked="@={homestate.realy}"
+       android:text="继电器"
+       />
+   <Switch
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:checked="@={homestate.openListen}"
+       android:text="下载"
+       />
+   <Switch
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:checked="@={homestate.allowUploadState}"
+       android:text="上传"
+       />
+
+</LinearLayout>
+</layout>
