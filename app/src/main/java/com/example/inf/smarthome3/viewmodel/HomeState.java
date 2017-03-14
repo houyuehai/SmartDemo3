@@ -3,7 +3,11 @@ package com.example.inf.smarthome3.viewmodel;
 import android.content.Context;
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
+import android.databinding.BindingMethod;
+import android.databinding.BindingMethods;
 import android.util.Log;
+import android.widget.Button;
+import android.widget.RadioButton;
 
 import com.android.databinding.library.baseAdapters.BR;
 import com.example.inf.smarthome3.bean.HomeStateBean;
@@ -26,6 +30,8 @@ import cn.bmob.v3.listener.SaveListener;
  *
  */
 
+
+
 public class HomeState extends BaseObservable {
 
     static final String TAG = "HomeState";
@@ -45,6 +51,8 @@ public class HomeState extends BaseObservable {
 
     public boolean roomLight;     //房间灯
     public boolean realy;         //继电器
+
+    public int acState;
 
 
     @Bindable //在成员变量对应的get方法上 配置@Bindable 才能在BR文件里生成 对应的整形int 类似 我们的R文件
@@ -150,6 +158,16 @@ public class HomeState extends BaseObservable {
         this.allowUploadState = allowUploadState;
         notifyPropertyChanged(BR.allowUploadState);
     }
+
+    @Bindable
+    public int getAcState() {
+        return acState;
+    }
+
+    public void setAcState(int acState) {
+        this.acState = acState;
+    }
+
 
 
 

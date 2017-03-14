@@ -44,6 +44,22 @@
        android:checked="@={homestate.allowUploadState}"
        android:text="上传"
        />
+<RadioGroup
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+   <RadioButton
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+
+       />
+   <RadioButton
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content" />
+   <RadioButton
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content" />
+</RadioGroup>
+
 
 </LinearLayout>
 </layout>
