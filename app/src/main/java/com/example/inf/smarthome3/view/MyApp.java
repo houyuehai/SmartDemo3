@@ -16,7 +16,7 @@ public class MyApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        homeState = new HomeState(this);
         Bmob.initialize(this,"b0a1ac88a07f994e03cf6c082b77b875");//初始化Bmob
+        homeState = new HomeState(this);
     }
 }

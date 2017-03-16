@@ -10,7 +10,14 @@ public class HomeStateUtil {
         //房间灯
         if(homeState.getRoomLight()!= homeStateBean.getRoomLight()) {
             homeState.setRoomLight(homeStateBean.getRoomLight());
-            }
+        }
+        if(homeState.isParlour1Light()!= homeStateBean.getParlour1Light()) {
+            homeState.setParlour1Light(homeStateBean.getParlour1Light());
+        }
+        if(homeState.getAcState()!= homeStateBean.getAcState()) {
+            homeState.setAcState(homeStateBean.getAcState());
+        }
+
     }
 
     public static void  assimilation( HomeStateBean homeStateBean,HomeState homeState){

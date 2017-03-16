@@ -10,9 +10,10 @@ public interface HomeModel {
 
 
 
-    void closeLightWithJNI();  //guan 灯
-    void openLightWithJNI();//kai灯
+    void closeLightWithJNI(int type);  //guan 灯
+    void openLightWithJNI(int type);//kai灯
 
+    void acOperate(int type); //0 1 4 9
 
     void openRealy();  //继电器 开门
     void closeRealy();//继电器 关门

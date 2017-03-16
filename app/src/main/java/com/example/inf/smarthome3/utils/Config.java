@@ -5,6 +5,7 @@ package com.example.inf.smarthome3.utils;
  */
 
 public class Config {
-    public static boolean UPLOAD_STADE_TO_BMOB ;
-    public static boolean DOWNLOAD_STADE_TO_BMOB ;
+    public static boolean UPLOAD_STADE_TO_BMOB =true;
+    public static boolean DOWNLOAD_STADE_TO_BMOB=false ;
+    public static String HOME_STATE_RECORD_ID="X61P888E" ;
 }

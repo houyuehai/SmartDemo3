@@ -23,17 +23,24 @@ public class HomeModelImpl implements HomeModel {
         HomeNative.openLightDev();
         HomeNative.openDoorDev();
 
+        HomeNative.openACDev();
+
     }
     @Override
-    public void closeLightWithJNI() {
-        HomeNative.lightOp(1,0);
-        HomeNative.lightOp(1,1);
+    public void closeLightWithJNI(int type) {
+        HomeNative.lightOp(1,type);
+        HomeNative.lightOp(1,type);
     }
 
     @Override
-    public void openLightWithJNI() {
-        HomeNative.lightOp(0,0);
-        HomeNative.lightOp(0,1);
+    public void openLightWithJNI(int type) {
+        HomeNative.lightOp(0,type);
+        HomeNative.lightOp(0,type);
+    }
+
+    @Override
+    public void acOperate(int type) {
+        HomeNative.operateACDev(type);
     }
 
     @Override

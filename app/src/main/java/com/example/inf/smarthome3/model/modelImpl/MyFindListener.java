@@ -10,7 +10,7 @@ import java.lang.reflect.Type;
  * Created by INF on 2017/3/14.
  */
 
-public abstract class RealTimeListener<T> {
+public abstract class MyFindListener<T> {
 
     private Type mType ;
 
@@ -20,7 +20,7 @@ public abstract class RealTimeListener<T> {
     public abstract void onFailed(Exception e);
     public abstract void onDataChange(T obj);
 
-    public RealTimeListener(){
+    public MyFindListener(){
         mType = getSuperclassTypeParameter(getClass());
         mClass = (Class<T>) mType;
     }

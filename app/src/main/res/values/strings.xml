@@ -1,3 +1,30 @@
 <resources>
     <string name="app_name">SmartHome3</string>
+    <string-array name="mainPage_tabhost_titles">
+        <item>主控设备</item>
+        <item>设备设置</item>
+        <item>我的智能</item>
+    </string-array>
+
+    <!--家电控制-->
+    <string-array name="appliance_control_titles">
+        <item>房间灯</item>
+        <item>窗帘</item>
+        <item>门控</item>
+        <item>空调</item>
+    </string-array>
+
+    <string name="appliance_control_roomlight">房间灯</string>
+    <string name="appliance_control_drawingroomlight">客厅灯</string>
+
+    <!--数据监控-->
+    <string-array name="datamonitor_tabhost_titles">
+        <item>温湿度</item>
+        <item>光感</item>
+        <item>烟雾</item>
+        <item>红外感应</item>
+    </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
