@@ -2,6 +2,7 @@ package com.example.inf.smarthome3.model.modelImpl;
 
 import com.example.inf.smarthome3.model.HomeNative;
 import com.example.inf.smarthome3.model.model.HomeModel;
+import com.example.inf.smarthome3.viewmodel.HomeState;
 
 import org.json.JSONObject;
 
@@ -22,8 +23,12 @@ public class HomeModelImpl implements HomeModel {
 
         HomeNative.openLightDev();
         HomeNative.openDoorDev();
-
         HomeNative.openACDev();
+        HomeNative.openCurtainDev();
+        HomeNative.openGasDev();
+        HomeNative.openLightSenseDev();
+        HomeNative.openDev();
+        HomeNative.openInfraredDev();
 
     }
     @Override
@@ -44,15 +49,25 @@ public class HomeModelImpl implements HomeModel {
     }
 
     @Override
-    public void openRealy() {
-
-        HomeNative.operateDoor(0);
+    public void realyOperate(int type) {
+        HomeNative.operateDoor(type);
     }
 
     @Override
-    public void closeRealy() {
+    public void curtainOperate(int type) {
+        
+    }
 
-        HomeNative.operateDoor(1);
+    @Override
+    public void closeDev() {
+        HomeNative.closeLightDev();
+        HomeNative.closeDoorDev();
+        HomeNative.closeACDev();
+        HomeNative.closeCurtainDev();
+        HomeNative.closeGasDev();
+        HomeNative.closeLightSenseDev();
+        HomeNative.closeDev();
+        HomeNative.closeInfraredDev();
     }
 
 

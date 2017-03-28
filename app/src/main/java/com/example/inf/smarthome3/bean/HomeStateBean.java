@@ -14,6 +14,8 @@ public class HomeStateBean extends BmobObject {
     private Boolean door;
     private Integer acState;
 
+    private Integer curtainData;
+
 
      public Boolean getRoomLight() {
         return roomLight;
@@ -45,6 +47,13 @@ public class HomeStateBean extends BmobObject {
     public void setAcState(Integer acState) {
         this.acState = acState;
     }
+    public Integer getCurtainData() {
+        return curtainData;
+    }
+
+    public void setCurtainData(Integer curtainData) {
+        this.curtainData = curtainData;
+    }
 
     public HomeStateBean buildRoomLight(boolean flag) {
         this.roomLight = flag;
@@ -62,4 +71,9 @@ public class HomeStateBean extends BmobObject {
         acState = flag;
         return this;
     }
+    public HomeStateBean buildCurtainData(int data) {
+        curtainData = data;
+        return this;
+    }
+
 }

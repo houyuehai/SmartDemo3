@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout >
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
    <data class = "Mainbinding">
       <variable
           name="homeState"
@@ -11,46 +11,22 @@
        android:layout_height="match_parent"
        android:gravity="center"
        tools:context="com.example.uhomeserver.MainActivity"
-       android:orientation="vertical">
-      <LinearLayout
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:orientation="vertical"
-          android:gravity="center_vertical">
-         <TextView
-             android:id="@+id/tv_showStateId"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:text="服务器启动状态："
-             android:textSize="20sp"/>
-
-         <TextView
-             android:id="@+id/tv_showClientNameId"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:text="当前登录用户: "
-             android:textSize="20sp"/>
-
-         <TextView
-             android:id="@+id/tv_showOperationId"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:text="操作："
-             android:textSize="20sp"/>
-      </LinearLayout>
+       android:orientation="vertical"
+       android:background="@color/md_blue_grey_500"
+       android:weightSum="5">
 
       <LinearLayout
           android:layout_width="match_parent"
-          android:layout_height="wrap_content"
+          android:layout_height="0dp"
+          android:layout_weight="2"
           android:orientation="horizontal"
           android:gravity="center"
-          android:weightSum="3"
-          android:layout_margin="10dp">
+          android:layout_marginTop="50dp">
 
          <LinearLayout
              android:layout_width="0dp"
              android:layout_height="match_parent"
-             android:layout_weight="1"
+             android:layout_weight="2"
              android:orientation="horizontal"
              android:gravity="center">
             <TextView
@@ -85,8 +61,11 @@
                 android:layout_height="wrap_content"
                 android:text="监听:"
                 android:textSize="30sp"
+                android:textColor="@color/textColor"
                 android:textOff="off"
                 android:textOn="on"
+                android:track="@drawable/track"
+                android:thumb="@drawable/thumb"
                 android:checked="@={homeState.openListen}"
                  />
             <Switch
@@ -96,17 +75,11 @@
                 android:text="门控:"
                 android:textSize="30sp"
                 android:textOff="off"
-                android:checked="@{homeState.door}"
+                android:textColor="@color/textColor"
+                android:checked="@={homeState.door}"
+                android:track="@drawable/track"
+                android:thumb="@drawable/thumb"
                 android:textOn="on"/>
-            <Switch
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="窗帘:"
-                android:textSize="30sp"
-                android:textOff="off"
-                android:textOn="on"
-                android:checked="@{homeState.curtain}"
-                android:id="@+id/appliance_control_curtainSwitchId" />
          </LinearLayout>
 
 
@@ -116,58 +89,84 @@
              android:layout_height="match_parent"
              android:orientation="vertical"
              android:gravity="center">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="空调调节"
-                android:textSize="30sp"/>
 
             <RadioGroup
                 android:id="@+id/appliance_control_ACRGId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                <RadioButton
+                   android:layout_width="100dp"
+                   android:layout_height="40dp"
+                   android:background="@drawable/bg_radiobutton"
+                   android:button="@null"
+                   android:gravity="center"
                    android:text="关闭"
+                   android:textColor="@color/textColor"
                    android:id="@+id/appliance_control_ACStopId"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
                    android:checked="@{homeState.acState==0}"
                    android:onClick="@{homeState.onClick}"
                    android:textSize="20sp"/>
                <RadioButton
+                   android:layout_width="100dp"
+                   android:layout_height="40dp"
+                   android:background="@drawable/bg_radiobutton"
+                   android:button="@null"
+                   android:gravity="center"
                    android:text="冷空调"
+                   android:textColor="@color/textColor"
                    android:id="@+id/appliance_control_ACCCWId"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
                    android:checked="@{homeState.acState==1}"
                    android:onClick="@{homeState.onClick}"
                    android:textSize="20sp"/>
                <RadioButton
+                   android:layout_width="100dp"
+                   android:layout_height="40dp"
+                   android:background="@drawable/bg_radiobutton"
+                   android:button="@null"
+                   android:gravity="center"
                    android:text="暖空调"
+                   android:textColor="@color/textColor"
                    android:id="@+id/appliance_control_ACCLockwiseId"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
                    android:checked="@{homeState.acState==4}"
                    android:onClick="@{homeState.onClick}"
-                   android:textSize="20sp"/>
+                   android:textSize="20sp"
+
+                   />
             </RadioGroup>
          </LinearLayout>
-
-      </LinearLayout>
-
-
-      <LinearLayout
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:orientation="horizontal"
-          android:weightSum="4"
-          android:gravity="center_horizontal"
-          android:layout_margin="10dp">
          <LinearLayout
              android:layout_width="0dp"
              android:layout_weight="1"
-             android:layout_height="wrap_content"
-             android:orientation="vertical">
+             android:layout_height="match_parent"
+             android:orientation="vertical"
+             android:paddingRight="20dp"
+             android:gravity="center">
+            <com.example.inf.smarthome3.customView.ProgressRegulator
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/progress_currain"
+                app:darkColor="@color/textColor"
+                app:lightColor="@color/colorPrimary"
+                app:onTouch="@{homeState.listener}"/>
+            </LinearLayout>
+      </LinearLayout>
+
+
+         <com.dalong.library.view.LoopRotarySwitchView
+             android:layout_width="fill_parent"
+             android:layout_height="0dp"
+             android:layout_weight="3"
+             android:gravity="center"
+             app:direction="right"
+             app:onChildViewScale="@{homeState.listener}"
+             >
+         <LinearLayout
+             android:layout_width="300dp"
+             android:layout_height="200dp"
+             android:padding="20dp"
+             android:orientation="vertical"
+             android:background="@drawable/bg_switchview_md_blue_400"
+             >
             <Switch
                 android:id="@+id/dataMonitor_humiditySwitchId"
                 android:layout_width="wrap_content"
@@ -175,7 +174,10 @@
                 android:text="Humidity:"
                 android:textSize="30sp"
                 android:textOff="off"
-                android:checked="@{homeState.humiditySwitch}"
+                android:textColor="@color/textColor"
+                android:track="@drawable/track"
+                android:thumb="@drawable/thumb"
+                android:checked="@={homeState.humiditySwitch}"
                 android:textOn="on" />
 
             <TextView
@@ -192,68 +194,81 @@
                 android:text="@{String.valueOf(homeState.humidity)}"
                 android:textSize="40sp"/>
          </LinearLayout>
-         <LinearLayout
-             android:layout_width="0dp"
-             android:layout_weight="1"
-             android:layout_height="wrap_content"
-             android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="300dp"
+                android:layout_height="200dp"
+                android:padding="20dp"
+                android:orientation="vertical"
+                android:background="@drawable/bg_switchview_md_green_400">
             <Switch
                 android:id="@+id/dataMonitor_infraredSwitchId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:checked="@{homeState.infraredSwitch}"
+                android:checked="@={homeState.infraredSwitch}"
                 android:text="红外开关:   "
+                android:textColor="@color/textColor"
+                android:track="@drawable/track"
+                android:thumb="@drawable/thumb"
                 android:textSize="30sp"/>
             <TextView
                 android:id="@+id/dataMonitor_infraredStateId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/textColor"
                 android:text="@{String.valueOf(homeState.infraredSensor)}"
                 android:textSize="30sp"/>
          </LinearLayout>
 
-         <LinearLayout
-             android:layout_width="0dp"
-             android:layout_weight="1"
-             android:layout_height="wrap_content"
-             android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="300dp"
+                android:layout_height="200dp"
+                android:padding="20dp"
+                android:orientation="vertical"
+                android:background="@drawable/bg_switchview_md_cyan_200">
             <Switch
                 android:id="@+id/dataMonitor_lightSensorSwitchId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="光感控制:   "
-                android:checked="@{homeState.lightSensorSwitch}"
+                android:track="@drawable/track"
+                android:thumb="@drawable/thumb"
+                android:textColor="@color/textColor"
+                android:checked="@={homeState.lightSensorSwitch}"
                 android:textSize="30sp"/>
             <TextView
                 android:id="@+id/dataMonitor_lightSensorStateId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+
                 android:text="@{String.valueOf(homeState.lightSensor)}"
                 android:textSize="30sp"/>
          </LinearLayout>
 
-         <LinearLayout
-             android:layout_width="0dp"
-             android:layout_weight="1"
-             android:layout_height="wrap_content"
-             android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="300dp"
+                android:layout_height="200dp"
+                android:padding="20dp"
+                android:orientation="vertical"
+                android:background="@drawable/bg_switchview_md_pink_300"
+                >
             <Switch
                 android:id="@+id/dataMonitor_gasSwitchId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="烟雾监控:   "
-                android:checked="@{homeState.gasSwitch}"
+                android:textColor="@color/textColor"
+                android:checked="@={homeState.gasSwitch}"
+                android:track="@drawable/track"
+                android:thumb="@drawable/thumb"
                 android:textSize="30sp"/>
             <TextView
                 android:id="@+id/dataMonitor_gasStateId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@{String.valueOf(homeState.gasSensor)}"
-                android:textSize="30sp"/>
+                android:textSize="30sp"
+                />
          </LinearLayout>
-
-      </LinearLayout>
-
-
+         </com.dalong.library.view.LoopRotarySwitchView>
    </LinearLayout>
 </layout>

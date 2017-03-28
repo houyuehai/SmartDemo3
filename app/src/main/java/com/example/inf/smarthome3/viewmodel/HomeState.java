@@ -3,15 +3,24 @@ package com.example.inf.smarthome3.viewmodel;
 import android.content.Context;
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
+import android.databinding.BindingAdapter;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 
 import com.android.databinding.library.baseAdapters.BR;
+import com.dalong.library.listener.OnItemClickListener;
+import com.dalong.library.view.LoopRotarySwitchView;
 import com.example.inf.smarthome3.R;
+import com.example.inf.smarthome3.animator.MyAnimatorUtil;
 import com.example.inf.smarthome3.bean.ErrorInfo;
 import com.example.inf.smarthome3.bean.HomeStateBean;
 import com.example.inf.smarthome3.bean.UserBean;
+import com.example.inf.smarthome3.customView.ProgressRegulator;
 import com.example.inf.smarthome3.model.model.BmobModel;
 import com.example.inf.smarthome3.model.model.HomeModel;
 import com.example.inf.smarthome3.model.modelImpl.BmobModelImpl;
@@ -59,7 +68,7 @@ public class HomeState extends BaseObservable {
     public boolean roomLight;     //房间灯
     public boolean parlour1Light; //客厅灯
     public boolean door;         //继电器
-    public boolean curtain;
+
     public boolean humiditySwitch;
     public boolean infraredSwitch;
     public boolean lightSensorSwitch;
@@ -72,7 +81,7 @@ public class HomeState extends BaseObservable {
     public float gasSensor;
 
     public int acState;
-
+    public int curtainData;
 
 
 
@@ -208,9 +217,9 @@ public class HomeState extends BaseObservable {
     public void setDoor(boolean door) {
         this.door = door;
         if(door){
-            homemodel.openRealy();
+            homemodel.realyOperate(0);
             }else {
-            homemodel.closeRealy();
+            homemodel.realyOperate(1);
             }
         notifyPropertyChanged(BR.door);
 
@@ -257,14 +266,7 @@ public class HomeState extends BaseObservable {
     }
 
 
-    @Bindable
-    public boolean isCurtain() {
-        return curtain;
-    }
 
-    public void setCurtain(boolean curtain) {
-        this.curtain = curtain;
-    }
 
     public boolean isHumiditySwitch() {
         return humiditySwitch;
@@ -338,6 +340,14 @@ public class HomeState extends BaseObservable {
         this.gasSensor = gasSensor;
     }
 
+    public int getCurtainData() {
+        return curtainData;
+    }
+
+    public void setCurtainData(int curtainData) {
+        this.curtainData = curtainData;
+    }
+
     public void onClick(View view){
         switch (view.getId()){
             case R.id.appliance_control_roomLightId :  this.setRoomLight(!roomLight); break;
@@ -348,4 +358,49 @@ public class HomeState extends BaseObservable {
         }
 
     }
+
+    @BindingAdapter({"bind:onTouch"})
+    public static void setListener(ProgressRegulator view, ProgressRegulator.ProgressActionListener listener) {
+        view.setProgressActionListener(listener);
+    }
+    public ProgressRegulator.ProgressActionListener listener = new ProgressRegulator.ProgressActionListener() {
+        @Override
+        public void onProgressChange(int progress) {
+            HomeState.this.curtainData = progress;
+        }
+
+        @Override
+        public void onProgressActionDown() {
+
+        }
+
+        @Override
+        public void onProgressActionUp() {
+            Log.i(TAG, "onProgressActionUp: ");
+            HomeStateBean h = new HomeStateBean();
+            h.buildCurtainData( HomeState.this.curtainData);
+            h.setObjectId(Config.HOME_STATE_RECORD_ID);
+            bmobModel.updataStateToBmob(h, new UpdateListener() {
+                @Override
+                public void done(BmobException e) {
+                    if(e!=null){
+                        EventBus.getDefault().post(new ErrorInfo(e.toString()));
+                    }
+                }
+            });
+        }
+    };
+
+
+    @BindingAdapter({"bind:onChildViewScale"})
+    public static void setListener(final LoopRotarySwitchView loopView, Object listener) {
+        loopView.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(int item, View view) {
+                Log.i(TAG, "onItemClick: "+loopView.getLayoutParams());
+
+            }
+        });
+    }
+
 }

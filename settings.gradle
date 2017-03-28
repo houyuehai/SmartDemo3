@@ -1,1 +1,1 @@
-include ':app', ':smarthomeforphone'
+include ':app', ':smarthomeforphone', ':loopview'

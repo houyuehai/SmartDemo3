@@ -124,6 +124,7 @@ JNIEXPORT void JNICALL Java_com_example_inf_smarthome3_model_HomeNative_openDoor
  */
 JNIEXPORT void JNICALL Java_com_example_inf_smarthome3_model_HomeNative_operateDoor
         (JNIEnv *env, jclass cls, jint op){
+         LOGI("relay");
          int relay = op;
          if(relay==0||relay==1){
             ioctl(fd_door, relay, O_RDONLY);
